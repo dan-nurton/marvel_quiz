@@ -18,16 +18,31 @@ const Landing = () => {
       // set display button to true
       setBtn(true);
     }, 500)
-  }, [])
+  }, []);
+
+  // set corner image on mouseOver
+  const setImage = (corner) => {
+    corner === 'left' ?  refWolverine.current.classList.add("leftImg") : refWolverine.current.classList.add("rightImg");
+  
+  }
+
+  // remove className on mouseOut
+  const clearImage = () => {
+    if (refWolverine.current.classList.contains("rightImg")) {
+      refWolverine.current.classList.remove("rightImg");
+    } else if (refWolverine.current.classList.contains("leftImg")) {
+      refWolverine.current.classList.remove("leftImg");
+    }
+  }
 
   // display buttons only if state btn is set to true
   const displayButton = btn && (
     <Fragment>
       <div className="leftBox">
-        <button className="btn-welcome">Inscription</button>
+        <button onMouseOut={clearImage} onMouseOver = {() => setImage('left')} className="btn-welcome">Inscription</button>
       </div>
       <div className="rightBox">
-        <button className="btn-welcome">Connexion</button>
+        <button onMouseOut={clearImage} onMouseOver = {() => setImage('right')} className="btn-welcome">Connexion</button>
       </div>
     </Fragment>
   )
