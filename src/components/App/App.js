@@ -10,9 +10,6 @@ import ErrorPage from '../ErrorPage';
 
 import '../../App.css';
 
-
-
-
 function App() {
   return (
     <Router>
