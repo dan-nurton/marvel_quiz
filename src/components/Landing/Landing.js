@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, Fragment } from 'react'
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
 
@@ -6,10 +7,10 @@ const Landing = () => {
   const refWolverine = useRef(null);
 
   //useState display buttons -> set to false
-  const [btn , setBtn] = useState(false);
+  const [btn, setBtn] = useState(false);
 
   // useEffet with dependency (empty array) -> componentDidMount
-  useEffect (() => {
+  useEffect(() => {
     // add className to "main" node (refWolverine)
     refWolverine.current.classList.add("startingImg");
     setTimeout(() => {
@@ -22,8 +23,8 @@ const Landing = () => {
 
   // set corner image on mouseOver
   const setImage = (corner) => {
-    corner === 'left' ?  refWolverine.current.classList.add("leftImg") : refWolverine.current.classList.add("rightImg");
-  
+    corner === 'left' ? refWolverine.current.classList.add("leftImg") : refWolverine.current.classList.add("rightImg");
+
   }
 
   // remove className on mouseOut
@@ -39,10 +40,10 @@ const Landing = () => {
   const displayButton = btn && (
     <Fragment>
       <div className="leftBox">
-        <button onMouseOut={clearImage} onMouseOver = {() => setImage('left')} className="btn-welcome">Inscription</button>
+        <Link onMouseOut={clearImage} onMouseOver={() => setImage('left')} className="btn-welcome" to="/signup">Inscription</Link>
       </div>
       <div className="rightBox">
-        <button onMouseOut={clearImage} onMouseOver = {() => setImage('right')} className="btn-welcome">Connexion</button>
+        <Link onMouseOut={clearImage} onMouseOver={() => setImage('right')} className="btn-welcome"  to="/login">Connexion</Link>
       </div>
     </Fragment>
   )
