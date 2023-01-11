@@ -1,6 +1,7 @@
 
-import React, { useState, useContext } from 'react'
-import { FirebaseContext } from '../Firebase';
+import React, { useState } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Firebase'
 
 
 const Signup = () => {
@@ -14,7 +15,7 @@ const Signup = () => {
 
   const [loginData, setLoginData] = useState(data);
   const [error, setError] = useState('');
-  const firebase = useContext(FirebaseContext);
+ 
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
@@ -23,8 +24,10 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginData;
-    firebase.signupUser(email, password)
-
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(user => {
+        setLoginData({...data})
+      })
       .catch(error => {
         setError(error);
         setLoginData({ ...data })
