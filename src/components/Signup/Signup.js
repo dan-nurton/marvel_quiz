@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase'
 
@@ -15,7 +16,8 @@ const Signup = () => {
 
   const [loginData, setLoginData] = useState(data);
   const [error, setError] = useState('');
- 
+  const navigate = useNavigate()
+
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
@@ -26,11 +28,11 @@ const Signup = () => {
     const { email, password } = loginData;
     createUserWithEmailAndPassword(auth, email, password)
       .then(user => {
-        setLoginData({...data})
+        setLoginData({ ...data });
+        navigate('/welcome')
       })
       .catch(error => {
         setError(error);
-        setLoginData({ ...data })
       })
   }
 
@@ -71,6 +73,9 @@ const Signup = () => {
               </div>
               {btn}
             </form>
+            <div className='linkContainer'>
+              <Link className='simpleLink' to="/login">Déjà inscrit ? Connectez-vous</Link>
+            </div>
           </div>
         </div>
       </div>

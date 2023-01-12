@@ -15,6 +15,7 @@ function App() {
     <Router>
       <div>
         <Header />
+       {/* Route component */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/welcome" element={<Welcome />} />
