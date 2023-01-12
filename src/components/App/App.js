@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from '../Header';
 import Landing from '../Landing';
 import Footer from '../Footer';
@@ -15,7 +15,7 @@ function App() {
     <Router>
       <div>
         <Header />
-       {/* Route component */}
+        {/* Route component */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/welcome" element={<Welcome />} />

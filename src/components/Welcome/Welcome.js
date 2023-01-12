@@ -1,14 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export const Welcome = () => {
+function Welcome() {
   return (
     <div className="quiz-bg">
-      <div className='container'>
-          Welcome
+      <div className="container">
+        Welcome
       </div>
     </div>
-  )
+  );
 }
 
-
-export default Welcome
+export default Welcome;

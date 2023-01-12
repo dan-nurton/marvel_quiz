@@ -1,0 +1,21 @@
+{
+     "root": true,
+     "env": {
+          "browser": true,
+          "jest": true
+     },
+     "extends": [
+          "airbnb",
+          "airbnb/hooks",
+          "plugin:react-redux/recommended"
+     ],
+     "plugins": [
+          "react-hooks",
+          "jsx-a11y",
+          "import",
+          "react-redux"
+     ],
+     "rules": {
+          "react/jsx-filename-extension": "off"
+     }
+}

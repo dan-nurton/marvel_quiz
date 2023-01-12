@@ -1,3 +1,3 @@
-import { auth } from "./FirebaseConfig";
+import auth from './FirebaseConfig';
 
-export {auth};
+export default auth;
