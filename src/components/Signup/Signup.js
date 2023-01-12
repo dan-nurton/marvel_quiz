@@ -59,6 +59,7 @@ function Signup() {
                   Pseudo
                 </label>
               </div>
+              .
               <div className="inputBox">
                 <input onChange={handleChange} value={email} type="email" id="email" autoComplete="off" required />
                 <label htmlFor="pseudo">
