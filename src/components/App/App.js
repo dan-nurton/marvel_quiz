@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from '../Header';
 import Landing from '../Landing';
@@ -7,24 +7,27 @@ import Welcome from '../Welcome';
 import Login from '../Login';
 import Signup from '../Signup';
 import ErrorPage from '../ErrorPage';
-
+import SessionContext from './SessionContext';
 import '../../App.css';
 
 function App() {
   return (
     <Router>
-      <div>
-        <Header />
-        {/* Route component */}
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      <SessionContext>
+        <div>
+          <Header />
+          {/* Route component */}
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </SessionContext>
+
     </Router>
   );
 }

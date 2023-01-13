@@ -1,25 +1,20 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import auth from '../Firebase';
+import { UserSessionContext } from '../App/SessionContext';
 import Logout from '../Logout';
 import Quiz from '../Quiz';
 
 function Welcome() {
   const navigate = useNavigate();
-  const [userSession, setUserSession] = useState(null);
-  useEffect(() => {
-    const listener = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserSession(user);
-      } else {
-        navigate('/');
-      }
-    });
-    return listener();
-  }, [navigate]);
+  const userSessionContext = useContext(UserSessionContext);
 
-  return userSession === null ? (
+  useEffect(() => {
+    if (!userSessionContext) {
+      navigate('/');
+    }
+  }, [userSessionContext, navigate]);
+
+  return userSessionContext === null ? (
     <>
       <div className="loader" />
       <p className="loaderText">Loading</p>
