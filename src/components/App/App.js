@@ -8,6 +8,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import ErrorPage from '../ErrorPage';
 import SessionContext from './SessionContext';
+import ForgetPassword from '../ForgetPassword';
 import '../../App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgetPassword" element={<ForgetPassword />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
           <Footer />
