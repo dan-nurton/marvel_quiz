@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import auth from '../Firebase';
+import { auth } from '../Firebase';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -30,8 +30,6 @@ function Login() {
       })
       .catch((catchError) => {
         setError(catchError);
-        setEmail('');
-        setPassword('');
       });
   };
 

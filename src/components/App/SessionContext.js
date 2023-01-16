@@ -1,23 +1,35 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import auth from '../Firebase';
+import { getDoc } from 'firebase/firestore';
+import { auth, user } from '../Firebase';
 
 export const UserSessionContext = createContext(null);
 
 function SessionContext({ children }) {
-  const [userSession, setUserSession] = useState(null);
+  const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const listener = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserSession(user);
+  const fetchUserData = () => {
+    onAuthStateChanged(auth, (userAuth) => {
+      if (userAuth && !userData) {
+        const colRef = user(userAuth.uid);
+        getDoc(colRef)
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              const docData = snapshot.data();
+              setUserData(docData);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     });
-    return listener();
-  });
+  };
+
+  fetchUserData();
 
   return (
-    <UserSessionContext.Provider value={userSession}>
+    <UserSessionContext.Provider value={userData}>
       {children}
     </UserSessionContext.Provider>
   );

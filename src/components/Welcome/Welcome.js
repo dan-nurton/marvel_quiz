@@ -6,15 +6,15 @@ import Quiz from '../Quiz';
 
 function Welcome() {
   const navigate = useNavigate();
-  const userSessionContext = useContext(UserSessionContext);
+  const userData = useContext(UserSessionContext);
 
   useEffect(() => {
-    if (!userSessionContext) {
+    if (!userData) {
       navigate('/');
     }
-  }, [userSessionContext, navigate]);
+  }, [userData, navigate]);
 
-  return userSessionContext === null ? (
+  return userData === null ? (
     <>
       <div className="loader" />
       <p className="loaderText">Loading</p>
