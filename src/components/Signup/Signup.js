@@ -79,7 +79,7 @@ function Signup() {
                 </label>
               </div>
               <div className="inputBox">
-                <input onChange={handleChange} value={confirmPassword} type="confirmPassword" id="confirmPassword" autoComplete="off" required />
+                <input onChange={handleChange} value={confirmPassword} type="password" id="confirmPassword" autoComplete="off" required />
                 <label htmlFor="password">
                   Confirmer le mot de passe
                 </label>

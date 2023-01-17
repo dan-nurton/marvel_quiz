@@ -32,32 +32,69 @@ function Quiz() {
     }
   }, [fetchedArrayQuiz]);
 
-  const handleNext = (e) => {
+  const handleStep = (e, stepAction) => {
     e.preventDefault();
-    setQuiz((prev) => ({
-      ...prev,
-      currentQuestionId: prev.currentQuestionId + 1,
-    }));
+    switch (stepAction) {
+      case 'next':
+        if (quiz.currentQuestionId < 10) {
+          setQuiz((prev) => ({
+            ...prev,
+            currentQuestionId: prev.currentQuestionId + 1,
+          }));
+        }
+        break;
+      case 'before':
+        if (quiz.currentQuestionId > 1) {
+          setQuiz((prev) => ({
+            ...prev,
+            currentQuestionId: prev.currentQuestionId - 1,
+          }));
+        }
+        break;
+      default:
+        break;
+    }
   };
-  const handleChoice = (e, option) => {
-    setAnswers(answers.set(quiz.currentQuestionId, option));
+  const handleChoice = (option) => {
+    setAnswers((prev) => {
+      const newChoices = new Map(prev);
+      newChoices.set(quiz.currentQuestionId, option);
+      return newChoices;
+    });
   };
 
   const { question, options } = quiz.storedQuestions[quiz.currentQuestionId - 1];
-  console.log(answers.get(quiz.currentQuestionId));
 
   const diplayOptions = options.map((optionName, index) => (
     <p
       key={optionName}
-      onClick={(e) => handleChoice(e, optionName)}
-      value={optionName}
+      onClick={() => handleChoice(optionName)}
       className={
-        answers.get(quiz.currentQuestionId) === optionName ? 'answerOptions answerOptionsChosen' : 'answerOptions'
-  }
+        `answerOptions ${answers.get(quiz.currentQuestionId) === optionName ? ' answerOptionsChosen' : ''}`
+      }
     >
       {optionName}
     </p>
   ));
+
+  const disabledButton = (stepAction) => {
+    let disabled = '';
+    switch (stepAction) {
+      case 'next':
+        if (quiz.currentQuestionId >= 10 || !answers.get(quiz.currentQuestionId)) {
+          disabled = 'disabled';
+        }
+        break;
+      case 'before':
+        if (quiz.currentQuestionId === 1) {
+          disabled = 'disabled';
+        }
+        break;
+      default:
+        break;
+    }
+    return disabled;
+  };
 
   return (
     <div className="test">
@@ -66,7 +103,10 @@ function Quiz() {
       <ProgressBar progress={quiz.currentQuestionId} />
       <h2>{question}</h2>
       {diplayOptions}
-      <button onClick={handleNext} type="submit" className="btnSubmit">Suivante</button>
+      <div className="buttonsStep">
+        <button onClick={(e) => handleStep(e, 'before')} type="submit" className="btnSubmit" disabled={disabledButton('before')}>Précédent</button>
+        <button onClick={(e) => handleStep(e, 'next')} type="submit" className="btnSubmit" disabled={disabledButton('next')}>Suivante</button>
+      </div>
     </div>
   );
 }

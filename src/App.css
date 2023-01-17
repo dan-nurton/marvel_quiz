@@ -565,6 +565,10 @@ input:checked+.slider:before {
   color: var(--white-color);
 }
 
+.buttonsStep {
+  display: flex;
+}
+
 /* END ANSWER OPTIONS*/
 
 /* QUIZOVER */
