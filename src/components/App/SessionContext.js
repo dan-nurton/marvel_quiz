@@ -1,6 +1,9 @@
-import React, { useState, createContext } from 'react';
+import React, {
+  useState, createContext, useMemo, useEffect,
+} from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { getDoc } from 'firebase/firestore';
+
 import { auth, user } from '../Firebase';
 
 export const UserSessionContext = createContext(null);
@@ -8,7 +11,7 @@ export const UserSessionContext = createContext(null);
 function SessionContext({ children }) {
   const [userData, setUserData] = useState(null);
 
-  const fetchUserData = () => {
+  useEffect(() => {
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth && !userData) {
         const colRef = user(userAuth.uid);
@@ -24,12 +27,16 @@ function SessionContext({ children }) {
           });
       }
     });
+  }, [userData]);
+
+  const logoutSession = () => {
+    setUserData(null);
   };
 
-  fetchUserData();
+  const foo = useMemo(() => ({ userData, logoutSession }), [userData]);
 
   return (
-    <UserSessionContext.Provider value={userData}>
+    <UserSessionContext.Provider value={foo}>
       {children}
     </UserSessionContext.Provider>
   );

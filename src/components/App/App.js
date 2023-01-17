@@ -14,21 +14,28 @@ import '../../App.css';
 function App() {
   return (
     <Router>
-      <SessionContext>
-        <div>
-          <Header />
-          {/* Route component */}
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/welcome" element={<Welcome />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgetPassword" element={<ForgetPassword />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-          <Footer />
-        </div>
-      </SessionContext>
+
+      <div>
+        <Header />
+        {/* Route component */}
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route
+            path="/welcome"
+            element={(
+              <SessionContext>
+                <Welcome />
+                {' '}
+              </SessionContext>
+)}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </div>
 
     </Router>
   );

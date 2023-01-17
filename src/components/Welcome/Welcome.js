@@ -1,18 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+
 import { UserSessionContext } from '../App/SessionContext';
 import Logout from '../Logout';
 import Quiz from '../Quiz';
 
 function Welcome() {
-  const navigate = useNavigate();
-  const userData = useContext(UserSessionContext);
-
-  useEffect(() => {
-    if (!userData) {
-      navigate('/');
-    }
-  }, [userData, navigate]);
+  const { userData } = useContext(UserSessionContext);
 
   return userData === null ? (
     <>

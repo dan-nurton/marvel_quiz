@@ -104,12 +104,14 @@ header {
   padding: 20px 0;
   flex-basis: 80%;
 }
+
 /* END HEADER */
 
 /* MAIN */
 main {
   flex-grow: 1;
 }
+
 /* END MAIN */
 
 /* WELCOME PAGE */
@@ -166,15 +168,18 @@ main {
   color: var(--red-color);
   background-color: var(--white-color);
 }
+
 /* END WELCOME PAGE */
 
 /* TOASTIFY COLOR */
 .toastify-color-welcome {
   color: var(--black-color);
 }
+
 .toastify-color {
   color: var(--white-color);
 }
+
 /* END TOASTIFY COLOR */
 
 /* FOOTER */
@@ -215,6 +220,7 @@ footer {
   flex-direction: column;
   align-items: stretch;
 }
+
 /* END ERROR PAGE */
 
 /* SIGNUP - LOGIN - FORGETPASSWORD */
@@ -371,6 +377,7 @@ button[disabled]:hover {
 .simpleLink:hover {
   color: var(--red-color);
 }
+
 /* END SIGNUP - LOGIN - FORGETPASSWORD */
 
 /* LOADER */
@@ -409,6 +416,7 @@ button[disabled]:hover {
     transform: rotate(360deg);
   }
 }
+
 /* END LOADER */
 
 /* LOGOUT SWITCH */
@@ -472,6 +480,7 @@ input:checked+.slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
 /* END LOGOUT SWITCH */
 
 /* LEVELS */
@@ -485,6 +494,7 @@ input:checked+.slider:before {
 .headingLevels {
   margin: 0;
 }
+
 /* END LEVELS */
 
 /* PROGRESS BAR */
@@ -520,6 +530,7 @@ input:checked+.slider:before {
   border-radius: 5px;
   background: var(--red-color);
 }
+
 /* END PROGRESS BAR */
 
 /* ANSWER OPTIONS*/
@@ -544,6 +555,16 @@ input:checked+.slider:before {
   cursor: pointer;
   color: var(--white-color);
 }
+
+.answerOptionsChosen {
+  background-color: var(--green-color);
+  -webkit-box-shadow: 0px 4px 16px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 16px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 16px -5px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  color: var(--white-color);
+}
+
 /* END ANSWER OPTIONS*/
 
 /* QUIZOVER */
@@ -655,6 +676,7 @@ input:checked+.slider:before {
   border: 2px solid var(--red-color);
   color: var(--white-color);
 }
+
 /* END QUIZOVER */
 
 /* SUBMIT BUTTON */
@@ -676,6 +698,7 @@ input:checked+.slider:before {
   color: var(--white-color);
   text-transform: uppercase;
 }
+
 /* END SUBMIT BUTTON */
 
 /* MODAL */
@@ -802,6 +825,7 @@ input:checked+.slider:before {
   color: var(--white-color);
   border: 1px solid var(--light-grey-color);
 }
+
 /* END MODAL */
 
 /* MEDIA QUERIES */
@@ -854,6 +878,7 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width: 980px) {
+
   /* Change Modal elements */
   .modalBody {
     flex-direction: column;
@@ -870,8 +895,9 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width: 1110px) {
-   /* make container full width */
-   .container {
+
+  /* make container full width */
+  .container {
     flex: 0 1 100%;
   }
 

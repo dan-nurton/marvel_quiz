@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-function ProgressBar() {
+function ProgressBar({ progress }) {
   return (
     <>
       <div className="percentage">
@@ -8,7 +8,7 @@ function ProgressBar() {
         <div className="progressPercent">Progression: 10% </div>
       </div>
       <div className="progressBar">
-        <div className="progressBarChange" style={{ width: '10%' }} />
+        <div className="progressBarChange" style={{ width: `${progress * 10}%` }} />
       </div>
     </>
   );
