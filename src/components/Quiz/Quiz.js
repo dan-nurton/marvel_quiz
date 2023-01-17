@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
@@ -25,7 +26,6 @@ function Quiz() {
       setQuiz((prev) => ({
         ...prev,
         storedQuestions: fetchedArrayQuiz.map(({
-          answer,
           ...keepRest
         }) => keepRest),
       }));
@@ -36,20 +36,17 @@ function Quiz() {
     e.preventDefault();
     switch (stepAction) {
       case 'next':
-        if (quiz.currentQuestionId < 10) {
-          setQuiz((prev) => ({
-            ...prev,
-            currentQuestionId: prev.currentQuestionId + 1,
-          }));
-        }
+
+        setQuiz((prev) => ({
+          ...prev,
+          currentQuestionId: prev.currentQuestionId + 1,
+        }));
         break;
       case 'before':
-        if (quiz.currentQuestionId > 1) {
-          setQuiz((prev) => ({
-            ...prev,
-            currentQuestionId: prev.currentQuestionId - 1,
-          }));
-        }
+        setQuiz((prev) => ({
+          ...prev,
+          currentQuestionId: prev.currentQuestionId - 1,
+        }));
         break;
       default:
         break;
@@ -58,19 +55,19 @@ function Quiz() {
   const handleChoice = (option) => {
     setAnswers((prev) => {
       const newChoices = new Map(prev);
-      newChoices.set(quiz.currentQuestionId, option);
+      const score = option === quiz.storedQuestions[quiz.currentQuestionId - 1].answer ? 1 : 0;
+      newChoices.set(quiz.currentQuestionId, { score, choice: option, goodAnswer: quiz.storedQuestions[quiz.currentQuestionId - 1].answer });
       return newChoices;
     });
   };
 
   const { question, options } = quiz.storedQuestions[quiz.currentQuestionId - 1];
-
   const diplayOptions = options.map((optionName, index) => (
     <p
       key={optionName}
       onClick={() => handleChoice(optionName)}
       className={
-        `answerOptions ${answers.get(quiz.currentQuestionId) === optionName ? ' answerOptionsChosen' : ''}`
+        `answerOptions ${answers.get(quiz.currentQuestionId) !== undefined && answers.get(quiz.currentQuestionId).choice === optionName ? ' answerOptionsChosen' : ''}`
       }
     >
       {optionName}
