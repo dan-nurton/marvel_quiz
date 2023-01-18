@@ -657,7 +657,7 @@ input:checked+.slider:before {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: var(--red-color);
+  background-color: var(--black-color);
   color: var(--white-color);
   text-transform: uppercase;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Levels() {
+function Levels({ level }) {
   return (
     <div className="levelsContainer">
-      <h2 className="headingLevels">Débutant</h2>
+      <h2 style={{ textTransform: 'capitalize' }} className="headingLevels">{level.name}</h2>
     </div>
   );
 }

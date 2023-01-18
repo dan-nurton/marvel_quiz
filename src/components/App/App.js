@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { React } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from '../Header';
@@ -10,6 +11,7 @@ import ErrorPage from '../ErrorPage';
 import SessionContext from './SessionContext';
 import ForgetPassword from '../ForgetPassword';
 import '../../App.css';
+import 'react-notifications/lib/notifications.css';
 
 function App() {
   return (
