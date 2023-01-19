@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 
-function Modal({ showModal, hideModal, children }) {
+function Modal({ showModal, children }) {
   return (
     showModal
      && (
-     <div className="modalBackground" onClick={hideModal}>
+     <div className="modalBackground">
        <div className="modalContainer">
          {children}
        </div>
