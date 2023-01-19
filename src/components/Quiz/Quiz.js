@@ -8,6 +8,7 @@ import React, {
   useContext, useEffect, useState, useRef,
 } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { FaChevronRight } from 'react-icons/fa';
 import { UserSessionContext } from '../App/SessionContext';
 import Levels from '../Levels';
 import ProgressBar from '../ProgressBar';
@@ -111,6 +112,7 @@ function Quiz() {
         `answerOptions ${answers.get(quiz.currentQuestionId) !== undefined && answers.get(quiz.currentQuestionId).choice === optionName ? ' answerOptionsChosen' : ''}`
       }
     >
+      <FaChevronRight />
       {optionName}
     </p>
   ));

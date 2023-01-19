@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react';
+import { GiTrophyCup } from 'react-icons/gi';
 import QuizMarvel from '../QuizMarvel';
 
 const computeScore = (answers) => {
@@ -58,14 +60,19 @@ function QuizOver({ level, updateLevelQuiz, answers }) {
       case 5:
         return (
           <>
-            <p className="failureMsg">Pas de chance! Repasses-toi les 72 films Marvel et recommences ce Quiz.</p>
+            <p className="failureMsg">
+              Pas de chance! Repasses-toi les 72 films Marvel et recommences ce Quiz.
+            </p>
             <button type="submit" onClick={() => handleNextLevel(false)} className="btnResult failureMsg">Repasser le Quiz</button>
           </>
         );
       default:
         return (
           <>
-            <p className="successMsg">Félicitation. Tu es le roi des collants!</p>
+            <p className="successMsg">
+              <GiTrophyCup size="50px" />
+              Félicitation. Tu es le roi des collants!
+            </p>
             <button type="submit" onClick={() => handleNextLevel(true)} className="btnResult successMsg">Niveau suivant</button>
           </>
 
