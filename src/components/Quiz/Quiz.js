@@ -91,7 +91,12 @@ function Quiz() {
       const newChoices = new Map(prev);
       const score = option === quiz.storedQuestions[quiz.currentQuestionId - 1].answer ? 1 : 0;
       newChoices.set(quiz.currentQuestionId, {
-        question: quiz.storedQuestions[quiz.currentQuestionId - 1].question, score, choice: option, goodAnswer: quiz.storedQuestions[quiz.currentQuestionId - 1].answer,
+        question: quiz.storedQuestions[quiz.currentQuestionId - 1].question,
+        score,
+        choice: option,
+        goodAnswer: quiz.storedQuestions[quiz.currentQuestionId - 1].answer,
+        heroId: quiz.storedQuestions[quiz.currentQuestionId - 1].heroId,
+
       });
       return newChoices;
     });

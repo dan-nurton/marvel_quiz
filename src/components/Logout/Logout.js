@@ -1,10 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect, useContext } from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 import { auth } from '../Firebase';
 import { UserSessionContext } from '../App/SessionContext';
+import 'react-tooltip/dist/react-tooltip.css';
 
 function Logout() {
   const { logoutSession } = useContext(UserSessionContext);
@@ -15,9 +18,7 @@ function Logout() {
     if (checked) {
       signOut(auth).then(() => {
         logoutSession();
-        console.log('Vous êtes déconnecté');
       }).catch(() => {
-        console.log('OOPS! Error!');
       });
     }
   }, [checked, logoutSession, navigate]);
@@ -34,8 +35,9 @@ function Logout() {
           type="checkbox"
           checked={checked}
         />
-        <span className="slider round"></span>
+        <span id="deconnectionButton" className="slider round" data-tooltip-content="Déconnexion"></span>
       </label>
+      <Tooltip anchorId="deconnectionButton" />
     </div>
   );
 }

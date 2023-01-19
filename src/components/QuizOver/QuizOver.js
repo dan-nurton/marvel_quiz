@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react';
-import { GiTrophyCup } from 'react-icons/gi';
-import QuizMarvel from '../QuizMarvel';
+import { GiTrophyCup, GiWoodenClogs } from 'react-icons/gi';
+import axios from 'axios';
+import Modal from '../Modal/Modal';
 
 const computeScore = (answers) => {
   let incrementScores = 0;
@@ -13,13 +14,30 @@ const computeScore = (answers) => {
 };
 
 function QuizOver({ level, updateLevelQuiz, answers }) {
+  const API_PUBLIC_KEY = process.env.REACT_APP_MARVEL_API_KEY;
+  const hash = 'c2c76c20d33cfbdfb775905bee5b3e75';
+  console.log(API_PUBLIC_KEY);
   const totalScore = useMemo(() => computeScore(answers), [answers]);
-  // const { question, choice, goodAnswer } = answer;
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = ((id) => {
+    setOpenModal(true);
+    axios.get(`http://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${API_PUBLIC_KEY}&hash=${hash}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+  const hideModal = ((heroId) => {
+    setOpenModal(false);
+  });
 
   const tableRow = () => {
     const rows = [];
     answers.forEach(({
-      question, choice, goodAnswer, score,
+      question, choice, goodAnswer, score, heroId,
     }, key) => {
       const style = score
         ? {
@@ -35,6 +53,11 @@ function QuizOver({ level, updateLevelQuiz, answers }) {
           <td>{question}</td>
           <td>{choice}</td>
           <td>{goodAnswer}</td>
+          <td style={{ backgroundColor: 'white' }}>
+            {' '}
+            <button style={{ backgroundColor: 'red', color: 'white' }} type="submit" onClick={() => showModal(heroId)} className="btnResult">Infos</button>
+          </td>
+
         </tr>,
       ];
       rows.push(row);
@@ -111,6 +134,7 @@ function QuizOver({ level, updateLevelQuiz, answers }) {
           <thead>
             <tr>
               <th>Question</th>
+              <th>Ma réponse</th>
               <th>Réponse</th>
               <th>Infos</th>
             </tr>
@@ -120,6 +144,18 @@ function QuizOver({ level, updateLevelQuiz, answers }) {
           </tbody>
         </table>
       </div>
+
+      <Modal showModal={openModal} hideModal={hideModal}>
+        <div className="modalHeader">
+          <h2>Titre</h2>
+        </div>
+        <div className="modalBody">
+          <h3>Titre 2</h3>
+        </div>
+        <div className="modalFooter">
+          <button type="submit" className="">Fermer</button>
+        </div>
+      </Modal>
     </>
   );
 }
