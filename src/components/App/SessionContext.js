@@ -22,8 +22,8 @@ function SessionContext({ children }) {
               setUserData(docData);
             }
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+
           });
       }
     });

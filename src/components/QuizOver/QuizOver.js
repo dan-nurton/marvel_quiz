@@ -56,8 +56,8 @@ function QuizOver({ level, updateLevelQuiz, answers }) {
             localStorage.setItem('marvelStorageDate', Date.now());
           }
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+
         });
     }
   });

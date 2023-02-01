@@ -21,6 +21,7 @@
     "react-notifications": "^1.7.4",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
+    "react-service-worker": "^0.1.1",
     "react-stepper-horizontal": "^1.0.11",
     "react-toastify": "^9.1.1",
     "react-tooltip": "^5.5.2",
